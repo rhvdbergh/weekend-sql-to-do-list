@@ -1,14 +1,14 @@
-[ ] Setup
-  [ ] index.html, style.css, client.js 
+[x] Setup
+  [x] index.html, style.css, client.js 
   [x] jQuery
-  [ ] above all linked
+  [x] above all linked
   [x] express, body-parser, pg
   [x] .gitgnore
 
-[ ] layout of index.html
- [ ] create task 
- [ ] complete button
- [ ] delete button
+[x] layout of index.html
+ [x] create task 
+ [x] complete button
+ [x] delete button
 
 [ ] client.js
   [ ] event listeners

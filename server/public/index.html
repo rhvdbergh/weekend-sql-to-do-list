@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vendors/jquery.min.js"></script>
+    <script src="./scripts/client.js"></script>
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>To-Do-Lister</title>
+  </head>
+  <body>
+    <header class="container">
+      <h1>To-Do-Lister</h1>
+    </header>
+    <main class="container" id="mainContainer">
+      <div id="inputSection">
+        <input
+          id="taskInput"
+          type="text"
+          class="userInput"
+          placeholder="Enter new task..."
+        />
+        <button class="btn btn-success" id="submitTaskBtn">Add Task</button>
+      </div>
+      <div class="container" id="tasksDisplay">
+        <table class="table" id="tasksDisplayTable">
+          <thead>
+            <tr>
+              <th>Task</th>
+              <!-- Empty space to add tables for complete and delete button -->
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tasksDisplayTableBody">
+            <!-- Some dummy data! -->
+            <tr>
+              <td>Sharpen digital pencils</td>
+              <td>
+                <button id="completeBtn" class="btn btn-success">
+                  Complete
+                </button>
+              </td>
+              <td>
+                <button id="completeBtn" class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
