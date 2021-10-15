@@ -34,9 +34,9 @@ css
   [ ] .taskIncomplete
 
 
-[ ] server setup
-  [ ] server.js
-  [ ] task router setup
+[x] server setup
+  [x] server.js
+  [x] task router setup
   [ ] pool for pg
 
 [ ] REST 
