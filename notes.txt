@@ -1,0 +1,47 @@
+[ ] Setup
+  [ ] index.html, style.css, client.js 
+  [x] jQuery
+  [ ] above all linked
+  [x] express, body-parser, pg
+  [x] .gitgnore
+
+[ ] layout of index.html
+ [ ] create task 
+ [ ] complete button
+ [ ] delete button
+
+[ ] client.js
+  [ ] event listeners
+    [ ] create
+    [ ] delete
+  [ ] create ajax GET /tasks
+  [ ] create ajax POST /tasks 
+  [ ] create ajax DELETE /tasks/:id
+  [ ] render
+    [ ] complete button
+      [ ] changes visual color by class
+    [ ] delete button
+      [ ] 
+
+[x] create database
+  [x] table layout
+    [x] id task complete time_completed
+  [x] create mock data table
+  [x] create database.sql
+
+css
+  [ ] .taskComplete
+  [ ] .taskIncomplete
+
+
+[ ] server setup
+  [ ] server.js
+  [ ] task router setup
+  [ ] pool for pg
+
+[ ] REST 
+ [ ] GET /tasks
+    [ ] pool - pg
+ [ ] POST /tasks
+    [ ] pool - pg
+  
