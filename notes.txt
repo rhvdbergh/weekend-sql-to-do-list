@@ -17,12 +17,12 @@
     [X] delete
   [x] create ajax GET /tasks
   [x] create ajax POST /tasks 
-  [ ] create ajax DELETE /tasks/:id
+  [x] create ajax DELETE /tasks/:id
   [ ] render
     [x] complete button
       [ ] changes visual color by class
     [X] delete button
-      [ ] deletes
+      [x] deletes
 
 [x] create database
   [x] table layout

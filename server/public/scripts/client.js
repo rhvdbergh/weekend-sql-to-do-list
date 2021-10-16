@@ -13,6 +13,7 @@ function onReady() {
 function attachEventListeners() {
   $(`#submitTaskBtn`).on(`click`, addTask);
   $(`#tasksDisplayTableBody`).on(`click`, `.deleteBtn`, deleteTask);
+  $(`#tasksDisplayTableBody`).on(`click`, `.completeBtn`, completeTask);
 }
 
 // retrieve all tasks (and render() )
@@ -92,5 +93,22 @@ function deleteTask() {
     })
     .catch(function (err) {
       console.log(`There was an error deleting the task on the server:`, err);
+    });
+}
+
+function completeTask() {
+  console.log(`in completeTask`);
+  $.ajax({
+    method: `PUT`,
+    url: `/tasks/${$(this).closest(`tr`).data(`id`)}`,
+    data: {
+      complete: true,
+    },
+  })
+    .then(function (response) {
+      getTasks();
+    })
+    .catch(function (err) {
+      console.log(`There was an error updating the task on the server:`, err);
     });
 }
