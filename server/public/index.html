@@ -6,33 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./vendors/jquery.min.js"></script>
     <script src="./scripts/client.js"></script>
+    <link rel="stylesheet" href="./style/bootstrap.min.css" />
     <link rel="stylesheet" href="./style/style.css" />
     <title>To-Do-Lister</title>
   </head>
   <body>
-    <header class="container">
+    <header class="container d-flex justify-content-center align-items-center">
       <h1>To-Do-Lister</h1>
     </header>
     <main class="container" id="mainContainer">
-      <div id="inputSection">
-        <input
-          id="taskInput"
-          type="text"
-          class="userInput"
-          placeholder="Enter new task..."
-        />
-        <button class="btn btn-success" id="submitTaskBtn">Add Task</button>
+      <div id="inputSection" class="sticky-top">
+        <div class="row">
+          <div class="form-floating col-12 col-sm-9">
+            <input
+              id="taskInput"
+              type="text"
+              class="userInput form-control"
+              placeholder="Enter new task..."
+            />
+            <label for="taskInput">Enter new task...</label>
+          </div>
+          <div class="d-flex justify-content-center col-12 col-sm-3">
+            <button
+              class="btn btn-success flex-fill justify-self-center"
+              id="submitTaskBtn"
+            >
+              Add Task
+            </button>
+          </div>
+        </div>
       </div>
       <div class="container" id="tasksDisplay">
-        <table class="table" id="tasksDisplayTable">
-          <thead>
-            <tr>
-              <th>Task</th>
-              <!-- Empty space to add tables for complete and delete button -->
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
+        <table
+          class="table table-borderless align-middle"
+          id="tasksDisplayTable"
+        >
+          <thead></thead>
           <tbody id="tasksDisplayTableBody"></tbody>
         </table>
       </div>
