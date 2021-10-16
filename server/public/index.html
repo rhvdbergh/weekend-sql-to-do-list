@@ -15,15 +15,21 @@
       <h1>To-Do-Lister</h1>
     </header>
     <main class="container" id="mainContainer">
-      <div id="inputSection" class="form-floating">
-        <input
-          id="taskInput"
-          type="text"
-          class="userInput form-control"
-          placeholder="Enter new task..."
-        />
-        <label for="taskInput">Enter new task...</label>
-        <button class="btn btn-success" id="submitTaskBtn">Add Task</button>
+      <div id="inputSection">
+        <div class="row">
+          <div class="form-floating col-sm-10">
+            <input
+              id="taskInput"
+              type="text"
+              class="userInput form-control"
+              placeholder="Enter new task..."
+            />
+            <label for="taskInput">Enter new task...</label>
+          </div>
+          <button class="btn btn-success col-sm-2" id="submitTaskBtn">
+            Add Task
+          </button>
+        </div>
       </div>
       <div class="container" id="tasksDisplay">
         <table class="table" id="tasksDisplayTable">
