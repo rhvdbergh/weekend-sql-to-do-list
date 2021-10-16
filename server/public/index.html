@@ -15,13 +15,14 @@
       <h1>To-Do-Lister</h1>
     </header>
     <main class="container" id="mainContainer">
-      <div id="inputSection">
+      <div id="inputSection" class="form-floating">
         <input
           id="taskInput"
           type="text"
-          class="userInput"
+          class="userInput form-control"
           placeholder="Enter new task..."
         />
+        <label for="taskInput">Enter new task...</label>
         <button class="btn btn-success" id="submitTaskBtn">Add Task</button>
       </div>
       <div class="container" id="tasksDisplay">
