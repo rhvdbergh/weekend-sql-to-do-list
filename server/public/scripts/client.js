@@ -100,22 +100,23 @@ function deleteTask() {
     dangerMode: true,
   }).then(function (userConfirmedDeletion) {
     if (userConfirmedDeletion) {
-      console.log(`id:`, $(self).closest(`tr`).data(`id`));
-      $.ajax({
-        method: `DELETE`,
-        url: `/tasks/${$(self).closest(`tr`).data(`id`)}`,
-      })
-        .then(function (response) {
-          getTasks();
-        })
-        .catch(function (err) {
-          console.log(
-            `There was an error deleting the task on the server:`,
-            err
-          );
-        });
+      performDeletion(self);
     } // end if userConfirmedDeletion
   }); // end then for swal
+}
+
+function performDeletion(el) {
+  console.log(`id:`, $(el).closest(`tr`).data(`id`));
+  $.ajax({
+    method: `DELETE`,
+    url: `/tasks/${$(el).closest(`tr`).data(`id`)}`,
+  })
+    .then(function (response) {
+      getTasks();
+    })
+    .catch(function (err) {
+      console.log(`There was an error deleting the task on the server:`, err);
+    });
 }
 
 function completeTask() {
