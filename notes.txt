@@ -14,7 +14,7 @@
   [ ] event listeners
     [ ] create
     [ ] delete
-  [ ] create ajax GET /tasks
+  [x] create ajax GET /tasks
   [ ] create ajax POST /tasks 
   [ ] create ajax DELETE /tasks/:id
   [ ] render
@@ -42,6 +42,6 @@ css
 [ ] REST 
  [x] GET /tasks
     [x] pool - pg
- [ ] POST /tasks
-    [ ] pool - pg
+ [x] POST /tasks
+    [x] pool - pg
   
