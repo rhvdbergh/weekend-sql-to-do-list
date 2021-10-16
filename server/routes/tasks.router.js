@@ -68,6 +68,31 @@ router.delete(`/:id`, (req, res) => {
     });
 });
 
+// Updates tasks regarding complete / incomplete
+router.put(`/:id`, (req, res) => {
+  let complete = req.body.complete;
+  let id = req.params.id;
+  console.log(`PUT /tasks id=`, id);
+
+  let query = `
+    UPDATE "tasks"
+    SET "complete" = $1
+    WHERE ID = $2
+  `;
+
+  // parameterize user input
+  let values = [complete, id];
+  pool
+    .query(query, values)
+    .then(() => {
+      res.sendStatus(204); // send no content (=success)
+    })
+    .catch((err) => {
+      handleError(err);
+      res.sendStatus(500); // signal server error
+    });
+});
+
 // error handler for all errors
 function handleError(err) {
   console.log(`There was an error connecting to PostgreSQL:`, err);
