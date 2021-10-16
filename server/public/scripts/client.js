@@ -12,6 +12,7 @@ function onReady() {
 
 function attachEventListeners() {
   $(`#submitTaskBtn`).on(`click`, addTask);
+  $(`#tasksDisplayTableBody`).on(`click`, `.deleteBtn`, deleteTask);
 }
 
 // retrieve all tasks (and render() )
@@ -39,22 +40,21 @@ function render(tasks) {
   for (let task of tasks) {
     // build row as a jQuery object
     let row = $(`
-    <tr>
+    <tr data-id="${task.id}">
       <td class="taskIncomplete">${task.task}</td>
       <td> 
         ${
           task.complete
             ? // conditional: complete button only present when task is not complete
               ''
-            : '<button id="completeBtn" class="btn btn-success">Complete</button>'
+            : '<button class="completeBtn btn btn-success">Complete</button>'
         }
       </td>
       <td>
-        <button id="completeBtn" class="btn btn-danger">Delete</button>
+        <button class="deleteBtn btn btn-danger">Delete</button>
       </td>
     </tr>`);
     // set the id for this task on the tr
-    row.data(`id`, task.id);
     task.complete // add class depending on complete status
       ? row.addClass(`taskComplete`)
       : row.addClass(`taskIncomplete`);
@@ -71,11 +71,26 @@ function addTask() {
       task: $(`#taskInput`).val(),
     },
   })
-    .then((response) => {
+    .then(function (response) {
       $(`#taskInput`).val(``).focus();
       getTasks();
     })
     .catch(function (err) {
       console.log(`There was an error posting the task to the server:`, err);
+    });
+}
+
+function deleteTask() {
+  console.log(`in deleteTask`);
+  console.log(`id:`, $(this).closest(`tr`).data(`id`));
+  $.ajax({
+    method: `DELETE`,
+    url: `/tasks/${$(this).closest(`tr`).data(`id`)}`,
+  })
+    .then(function (response) {
+      getTasks();
+    })
+    .catch(function (err) {
+      console.log(`There was an error deleting the task on the server:`, err);
     });
 }

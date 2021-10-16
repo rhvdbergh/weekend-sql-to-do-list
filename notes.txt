@@ -12,10 +12,11 @@
 
 [ ] client.js
   [ ] event listeners
-    [ ] create
+    [x] create
+    [ ] complete
     [ ] delete
   [x] create ajax GET /tasks
-  [ ] create ajax POST /tasks 
+  [x] create ajax POST /tasks 
   [ ] create ajax DELETE /tasks/:id
   [ ] render
     [x] complete button
