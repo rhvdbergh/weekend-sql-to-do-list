@@ -103,6 +103,7 @@ function completeTask() {
     url: `/tasks/${$(this).closest(`tr`).data(`id`)}`,
     data: {
       complete: true,
+      date: new Date(Date.now()),
     },
   })
     .then(function (response) {
