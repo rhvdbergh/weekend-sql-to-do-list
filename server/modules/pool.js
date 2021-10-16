@@ -3,7 +3,7 @@ const pg = require(`pg`);
 const pool = new pg.Pool({
   host: `localhost`,
   idleTimeoutMillis: 30000,
-  database: `tasks`,
+  database: `weekend-to-do-app`,
   port: 5432,
   max: 10,
 });
