@@ -42,7 +42,16 @@ function render(tasks) {
     // build row as a jQuery object
     let row = $(`
     <tr data-id="${task.id}">
-      <td class="col-8 task">${task.task}</td>
+      <td>
+        <span class="task col-${task.complete ? '6' : '8'}">${task.task}</span>
+        ${
+          task.complete
+            ? `<span class="col-2">Completed: ${new Date(
+                task.time_completed
+              ).toLocaleDateString()}</span>`
+            : ''
+        }
+      </td>
       <td class="tableButtons d-flex justify-content-end flex-wrap"> 
         ${
           task.complete
