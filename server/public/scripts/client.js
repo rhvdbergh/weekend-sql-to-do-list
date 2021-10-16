@@ -1,11 +1,13 @@
 console.log(`in js`);
 
+let orderBy;
+
 // DOM is loaded, start jQuery
 $(onReady);
 
 function onReady() {
   console.log(`in jq`);
-  getTasks();
+  getTasks(orderBy);
   // set up event listeners
   attachEventListeners();
 }
@@ -14,13 +16,37 @@ function attachEventListeners() {
   $(`#submitTaskBtn`).on(`click`, addTask);
   $(`#tasksDisplayTableBody`).on(`click`, `.deleteBtn`, deleteTask);
   $(`#tasksDisplayTableBody`).on(`click`, `.completeBtn`, completeTask);
+  $(`.sortBtn`).on(`click`, sort);
+}
+
+function sort() {
+  console.log(`in sort`);
+  let id = $(this).attr(`id`); // this id refers to the id of the btn
+  switch (id) {
+    case `sortAtoZ`:
+      orderBy = `az`;
+      break;
+    case `sortZtoA`:
+      orderBy = `za`;
+      break;
+    case `dateAscending`:
+      orderBy = `dateAsc`;
+      break;
+    case `dateDescending`:
+      orderBy = `dateDesc`;
+      break;
+    default:
+      orderBy = `id`; // this id is the id in the db table
+      break;
+  }
+  getTasks();
 }
 
 // retrieve all tasks (and render() )
 function getTasks() {
   $.ajax({
     method: `GET`,
-    url: `/tasks`,
+    url: `/tasks?sort=${orderBy}`, // orderBy is a global variable
   })
     .then(function (response) {
       render(response);
@@ -119,7 +145,7 @@ function performDeletion(el) {
     url: `/tasks/${$(el).closest(`tr`).data(`id`)}`,
   })
     .then(function (response) {
-      getTasks(); // refresh the screen
+      getTasks(orderBy); // refresh the screen
     })
     .catch(function (err) {
       console.log(`There was an error deleting the task on the server:`, err);
