@@ -2,6 +2,7 @@ const { Router } = require(`express`);
 const router = new Router();
 const pool = require(`../modules/pool.js`);
 
+// retrieves all the tasks in the db
 router.get(`/`, (req, res) => {
   console.log(`GET /tasks`);
   // TODO: temporary sendStatus
@@ -17,7 +18,33 @@ router.get(`/`, (req, res) => {
     })
     .catch((err) => {
       handleError(err);
-      res.sendStatus(500);
+      res.sendStatus(500); // signal server error
+    });
+});
+
+// adds a task to the db
+router.post(`/`, (req, res) => {
+  console.log(`POST /tasks`);
+
+  let query = `
+    INSERT INTO "tasks" 
+    ("task")
+    VALUES
+    ($1);
+  `;
+
+  // parameterize the values
+  let values = [req.body.task];
+
+  pool
+    .query(query, values)
+    .then((response) => {
+      console.log(`updated db`);
+      res.sendStatus(201); // signal created
+    })
+    .catch((err) => {
+      handleError(err);
+      res.sendStatus(500); // signal server error
     });
 });
 

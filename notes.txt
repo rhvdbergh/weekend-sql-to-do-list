@@ -37,11 +37,11 @@ css
 [x] server setup
   [x] server.js
   [x] task router setup
-  [ ] pool for pg
+  [x] pool for pg
 
 [ ] REST 
- [ ] GET /tasks
-    [ ] pool - pg
+ [x] GET /tasks
+    [x] pool - pg
  [ ] POST /tasks
     [ ] pool - pg
   
