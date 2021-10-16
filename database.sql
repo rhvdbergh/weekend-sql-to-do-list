@@ -13,4 +13,5 @@ VALUES
 ('Install Express', TRUE),
 ('Create file structure', FALSE),
 ('Execute INSERT INTO statement', FALSE),
-('Create a table', TRUE);
+('Create a table', TRUE),
+('Insert a really, really long message to see what it will look like on different screen sizes', FALSE);
