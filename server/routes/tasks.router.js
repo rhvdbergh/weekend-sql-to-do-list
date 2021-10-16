@@ -13,7 +13,6 @@ router.get(`/`, (req, res) => {
   pool
     .query(query)
     .then((response) => {
-      console.log(`received pg response; rows:`, response.rows);
       res.send(response.rows);
     })
     .catch((err) => {
@@ -41,6 +40,27 @@ router.post(`/`, (req, res) => {
     .then((response) => {
       console.log(`updated db`);
       res.sendStatus(201); // signal created
+    })
+    .catch((err) => {
+      handleError(err);
+      res.sendStatus(500); // signal server error
+    });
+});
+
+// DELETE route to remove specific task from server
+router.delete(`/:id`, (req, res) => {
+  console.log(`DELETE /tasks, id to delete:`, req.params.id);
+  let query = `
+    DELETE FROM "tasks"
+    WHERE id=$1;
+  `;
+
+  //parameterize the values
+  let values = [req.params.id];
+  pool
+    .query(query, values)
+    .then(() => {
+      res.sendStatus(200); // send the OK
     })
     .catch((err) => {
       handleError(err);

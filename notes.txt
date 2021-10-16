@@ -14,7 +14,7 @@
   [ ] event listeners
     [x] create
     [ ] complete
-    [ ] delete
+    [X] delete
   [x] create ajax GET /tasks
   [x] create ajax POST /tasks 
   [ ] create ajax DELETE /tasks/:id
