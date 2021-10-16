@@ -32,6 +32,11 @@ header {
   text-decoration-line: line-through;
 }
 
+.dateCompleted {
+  display: block;
+  font-size: x-small;
+}
+
 #deleteBtn {
 }
 

@@ -39,34 +39,32 @@ function render(tasks) {
 
   // build each row and append
   for (let task of tasks) {
-    // build row as a jQuery object
-    let row = $(`
-    <tr data-id="${task.id}">
-      <td>
-        <span class="task col-${task.complete ? '6' : '8'}">${task.task}</span>
-        ${
-          task.complete
-            ? `<span class="col-2">Completed: ${new Date(
-                task.time_completed
-              ).toLocaleDateString()}</span>`
-            : ''
-        }
-      </td>
-      <td class="tableButtons d-flex justify-content-end flex-wrap"> 
-        ${
-          task.complete
-            ? // conditional: complete button only present when task is not complete
-              ''
-            : '<button class="completeBtn btn btn-success">Complete</button>'
-        }
-        <button class="deleteBtn btn btn-danger">Delete</button>
-      </td>
-    </tr>`);
-    task.complete // add class depending on complete status
-      ? row.addClass(`taskComplete`)
-      : row.addClass(`taskIncomplete`);
+    // build row as a jQuery object, depending on complete / incomplete
+    let row;
     if (task.complete) {
-      row.find(`.task`).addClass(`line-through`);
+      row = `
+        <tr data-id="${task.id}" class="taskComplete">
+            <td class="col-8">
+              <span class="task line-through">${task.task}</span>
+              <span class="dateCompleted">Completed: ${new Date(
+                task.time_completed
+              ).toLocaleDateString()}</span>
+            </td>
+          <td class="tableButtons d-flex justify-content-end align-items-center flex-wrap"> 
+            <button class="deleteBtn btn btn-danger">Delete</button>
+          </td>
+        </tr>`;
+    } else {
+      row = `
+        <tr data-id="${task.id}" class="taskIncomplete">
+            <td class="col-8">
+              <span class="task">${task.task}</span>
+            </td>
+          <td class="tableButtons d-flex justify-content-end align-items-center flex-wrap"> 
+            <button class="completeBtn btn btn-success">Complete</button>
+            <button class="deleteBtn btn btn-danger">Delete</button>
+          </td>
+        </tr>`;
     }
     $(`#tasksDisplayTableBody`).append(row);
   } // end for
