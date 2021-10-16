@@ -10,7 +10,9 @@ function onReady() {
   attachEventListeners();
 }
 
-function attachEventListeners() {}
+function attachEventListeners() {
+  $(`#submitTaskBtn`).on(`click`, addTask);
+}
 
 // retrieve all tasks (and render() )
 function getTasks() {
@@ -30,15 +32,14 @@ function getTasks() {
 }
 
 function render(tasks) {
+  // empty the table for new data
+  $(`#tasksDisplayTableBody`).empty();
+
+  // build each row and append
   for (let task of tasks) {
     // build row as a jQuery object
     let row = $(`
-    <tr class="${
-      task.complete
-        ? // conditional: add .complete or .incomplete depending on task
-          'taskComplete'
-        : 'taskIncomplete'
-    }">
+    <tr>
       <td class="taskIncomplete">${task.task}</td>
       <td> 
         ${
@@ -54,6 +55,9 @@ function render(tasks) {
     </tr>`);
     // set the id for this task on the tr
     row.data(`id`, task.id);
+    task.complete // add class depending on complete status
+      ? row.addClass(`taskComplete`)
+      : row.addClass(`taskIncomplete`);
     $(`#tasksDisplayTableBody`).append(row);
   } // end for
 }

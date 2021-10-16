@@ -18,10 +18,10 @@
   [ ] create ajax POST /tasks 
   [ ] create ajax DELETE /tasks/:id
   [ ] render
-    [ ] complete button
+    [x] complete button
       [ ] changes visual color by class
-    [ ] delete button
-      [ ] 
+    [X] delete button
+      [ ] deletes
 
 [x] create database
   [x] table layout
