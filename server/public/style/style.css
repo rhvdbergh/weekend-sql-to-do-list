@@ -1,3 +1,15 @@
+tr {
+  border: 2px solid black;
+}
+
+/* button {
+  margin: 5px 5px;
+} */
+
+header {
+  margin: 30px;
+}
+
 .taskComplete {
   background-color: grey;
   color: lightgray;
@@ -5,4 +17,26 @@
 
 .taskIncomplete {
   background-color: khaki;
+}
+
+.completeBtn,
+.deleteBtn {
+  margin: 5px 5px;
+}
+
+#inputSection {
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#tasksDisplayTable {
+  margin-top: 40px;
+}
+
+/* for small screens */
+@media (max-width: 576px) {
+  #taskInput {
+    margin-bottom: 30px;
+  }
 }

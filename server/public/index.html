@@ -11,13 +11,13 @@
     <title>To-Do-Lister</title>
   </head>
   <body>
-    <header class="container">
+    <header class="container d-flex justify-content-center align-items-center">
       <h1>To-Do-Lister</h1>
     </header>
     <main class="container" id="mainContainer">
-      <div id="inputSection">
+      <div id="inputSection" class="sticky-top">
         <div class="row">
-          <div class="form-floating col-sm-10">
+          <div class="form-floating col-12 col-sm-9">
             <input
               id="taskInput"
               type="text"
@@ -26,21 +26,22 @@
             />
             <label for="taskInput">Enter new task...</label>
           </div>
-          <button class="btn btn-success col-sm-2" id="submitTaskBtn">
-            Add Task
-          </button>
+          <div class="d-flex justify-content-center col-12 col-sm-3">
+            <button
+              class="btn btn-success flex-fill justify-self-center"
+              id="submitTaskBtn"
+            >
+              Add Task
+            </button>
+          </div>
         </div>
       </div>
       <div class="container" id="tasksDisplay">
-        <table class="table" id="tasksDisplayTable">
-          <thead>
-            <tr>
-              <th>Task</th>
-              <!-- Empty space to add tables for complete and delete button -->
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
+        <table
+          class="table table-borderless align-middle"
+          id="tasksDisplayTable"
+        >
+          <thead></thead>
           <tbody id="tasksDisplayTableBody"></tbody>
         </table>
       </div>

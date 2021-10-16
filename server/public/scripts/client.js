@@ -42,16 +42,14 @@ function render(tasks) {
     // build row as a jQuery object
     let row = $(`
     <tr data-id="${task.id}">
-      <td>${task.task}</td>
-      <td> 
+      <td class="col-8">${task.task}</td>
+      <td class="tableButtons d-flex justify-content-end flex-wrap"> 
         ${
           task.complete
             ? // conditional: complete button only present when task is not complete
               ''
             : '<button class="completeBtn btn btn-success">Complete</button>'
         }
-      </td>
-      <td>
         <button class="deleteBtn btn btn-danger">Delete</button>
       </td>
     </tr>`);
