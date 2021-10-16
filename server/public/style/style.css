@@ -10,20 +10,29 @@ header {
   margin: 30px;
 }
 
+.completeBtn,
+.deleteBtn {
+  margin: 5px 5px;
+}
+
+.deleteBtn {
+  text-decoration: none;
+}
+
 .taskComplete {
   background-color: grey;
   color: lightgray;
-  text-decoration-line: line-through;
 }
 
 .taskIncomplete {
   background-color: khaki;
 }
 
-.completeBtn,
-.deleteBtn {
-  margin: 5px 5px;
-  text-decoration-line: none;
+.line-through {
+  text-decoration-line: line-through;
+}
+
+#deleteBtn {
 }
 
 #inputSection {

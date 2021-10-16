@@ -42,7 +42,7 @@ function render(tasks) {
     // build row as a jQuery object
     let row = $(`
     <tr data-id="${task.id}">
-      <td class="col-8">${task.task}</td>
+      <td class="col-8 task">${task.task}</td>
       <td class="tableButtons d-flex justify-content-end flex-wrap"> 
         ${
           task.complete
@@ -56,6 +56,9 @@ function render(tasks) {
     task.complete // add class depending on complete status
       ? row.addClass(`taskComplete`)
       : row.addClass(`taskIncomplete`);
+    if (task.complete) {
+      row.find(`.task`).addClass(`line-through`);
+    }
     $(`#tasksDisplayTableBody`).append(row);
   } // end for
 }
