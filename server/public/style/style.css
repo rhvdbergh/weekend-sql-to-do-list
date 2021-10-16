@@ -23,6 +23,7 @@ header {
 .completeBtn,
 .deleteBtn {
   margin: 5px 5px;
+  text-decoration-line: none;
 }
 
 #inputSection {
