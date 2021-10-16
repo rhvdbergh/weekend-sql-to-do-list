@@ -61,3 +61,21 @@ function render(tasks) {
     $(`#tasksDisplayTableBody`).append(row);
   } // end for
 }
+
+function addTask() {
+  console.log(`in addTask`);
+  $.ajax({
+    method: `POST`,
+    url: `/tasks`,
+    data: {
+      task: $(`#taskInput`).val(),
+    },
+  })
+    .then((response) => {
+      $(`#taskInput`).val(``).focus();
+      getTasks();
+    })
+    .catch(function (err) {
+      console.log(`There was an error posting the task to the server:`, err);
+    });
+}
