@@ -90,17 +90,32 @@ function addTask() {
 
 function deleteTask() {
   console.log(`in deleteTask`);
-  console.log(`id:`, $(this).closest(`tr`).data(`id`));
-  $.ajax({
-    method: `DELETE`,
-    url: `/tasks/${$(this).closest(`tr`).data(`id`)}`,
-  })
-    .then(function (response) {
-      getTasks();
-    })
-    .catch(function (err) {
-      console.log(`There was an error deleting the task on the server:`, err);
-    });
+  // open up modal to confirm
+  let self = $(this);
+  swal({
+    title: `Are you sure?`,
+    text: `This will permanently delete this task!`,
+    icon: `warning`,
+    buttons: true,
+    dangerMode: true,
+  }).then(function (userConfirmedDeletion) {
+    if (userConfirmedDeletion) {
+      console.log(`id:`, $(self).closest(`tr`).data(`id`));
+      $.ajax({
+        method: `DELETE`,
+        url: `/tasks/${$(self).closest(`tr`).data(`id`)}`,
+      })
+        .then(function (response) {
+          getTasks();
+        })
+        .catch(function (err) {
+          console.log(
+            `There was an error deleting the task on the server:`,
+            err
+          );
+        });
+    } // end if userConfirmedDeletion
+  }); // end then for swal
 }
 
 function completeTask() {
