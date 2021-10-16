@@ -13,6 +13,7 @@ header {
 .taskComplete {
   background-color: grey;
   color: lightgray;
+  text-decoration-line: line-through;
 }
 
 .taskIncomplete {
