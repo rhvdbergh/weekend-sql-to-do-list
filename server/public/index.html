@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vendors/bootstrap.bundle.min.js"></script>
     <script src="./vendors/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./scripts/client.js"></script>
@@ -37,7 +38,35 @@
           </div>
         </div>
       </div>
-
+      <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="sortBtn"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Sort By
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="sortBtn">
+          <li>
+            <button id="sortAtoZ" class="dropdown-item sortBtn">A-Z</button>
+          </li>
+          <li>
+            <button id="sortZtoA" class="dropdown-item sortBtn">Z-A</button>
+          </li>
+          <li>
+            <button id="dateAscending" class="dropdown-item sortBtn">
+              Date completed (ascending)
+            </button>
+          </li>
+          <li>
+            <button id="dateDescending" class="dropdown-item sortBtn">
+              Date completed (descending)
+            </button>
+          </li>
+        </ul>
+      </div>
       <div class="container" id="tasksDisplay">
         <table
           class="table table-borderless align-middle"

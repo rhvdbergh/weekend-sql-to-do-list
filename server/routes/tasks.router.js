@@ -5,10 +5,13 @@ const pool = require(`../modules/pool.js`);
 // retrieves all the tasks in the db
 router.get(`/`, (req, res) => {
   console.log(`GET /tasks`);
-  // TODO: temporary sendStatus
+  console.log(`query`, req.query.sort);
+
+  // this will sanitize the input, guarding against SQL injection
+  let orderBy = findSortOrder(req.query.sort);
 
   // build SQL query - select everything!
-  let query = `SELECT * FROM "tasks" ORDER BY "id"`;
+  let query = `SELECT * FROM "tasks" ORDER BY ${orderBy}`;
 
   pool
     .query(query)
@@ -94,9 +97,35 @@ router.put(`/:id`, (req, res) => {
     });
 });
 
+/*
+    HELPER FUNCTIONS
+*/
+
 // error handler for all errors
 function handleError(err) {
   console.log(`There was an error connecting to PostgreSQL:`, err);
+}
+
+function findSortOrder(sort) {
+  let orderby;
+  switch (sort) {
+    case `az`:
+      orderBy = `LOWER("task") ASC`; // will compare characters on lowercase letters only
+      break;
+    case `za`:
+      orderBy = `LOWER("task") DESC`;
+      break;
+    case `dateAsc`:
+      orderBy = `"time_completed" ASC`;
+      break;
+    case `dateDesc`:
+      orderBy = `"time_completed" DESC`;
+      break;
+    default:
+      orderBy = `"id"`;
+      break;
+  }
+  return orderBy;
 }
 
 module.exports = router;
