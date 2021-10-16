@@ -42,7 +42,7 @@ function render(tasks) {
     // build row as a jQuery object
     let row = $(`
     <tr data-id="${task.id}">
-      <td class="taskIncomplete">${task.task}</td>
+      <td>${task.task}</td>
       <td> 
         ${
           task.complete
@@ -55,7 +55,6 @@ function render(tasks) {
         <button class="deleteBtn btn btn-danger">Delete</button>
       </td>
     </tr>`);
-    // set the id for this task on the tr
     task.complete // add class depending on complete status
       ? row.addClass(`taskComplete`)
       : row.addClass(`taskIncomplete`);

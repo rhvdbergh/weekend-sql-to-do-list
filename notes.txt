@@ -10,17 +10,17 @@
  [x] complete button
  [x] delete button
 
-[ ] client.js
-  [ ] event listeners
+[x] client.js
+  [x] event listeners
     [x] create
-    [ ] complete
+    [x] complete
     [X] delete
   [x] create ajax GET /tasks
   [x] create ajax POST /tasks 
   [x] create ajax DELETE /tasks/:id
-  [ ] render
+  [x] render
     [x] complete button
-      [ ] changes visual color by class
+      [x] changes visual color by class
     [X] delete button
       [x] deletes
 
@@ -31,8 +31,8 @@
   [x] create database.sql
 
 css
-  [ ] .taskComplete
-  [ ] .taskIncomplete
+  [x] .taskComplete
+  [x] .taskIncomplete
 
 
 [x] server setup
