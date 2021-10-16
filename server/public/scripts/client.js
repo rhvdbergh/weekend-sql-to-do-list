@@ -92,19 +92,26 @@ function deleteTask() {
   console.log(`in deleteTask`);
   // open up modal to confirm
   let self = $(this);
-  swal({
-    title: `Are you sure?`,
-    text: `This will permanently delete this task!`,
-    icon: `warning`,
-    buttons: true,
-    dangerMode: true,
-  }).then(function (userConfirmedDeletion) {
-    if (userConfirmedDeletion) {
-      performDeletion(self);
-    } // end if userConfirmedDeletion
-  }); // end then for swal
+  if (self.closest(`tr`).hasClass(`taskComplete`)) {
+    // this task is completed, delete without confirmation
+    performDeletion(self);
+  } else {
+    // the task is not yet complete, ask the user to confirm
+    swal({
+      title: `Are you sure?`,
+      text: `This will permanently delete this task!`,
+      icon: `warning`,
+      buttons: true,
+      dangerMode: true,
+    }).then(function (userConfirmedDeletion) {
+      if (userConfirmedDeletion) {
+        performDeletion(self);
+      } // end if userConfirmedDeletion
+    }); // end then for swal
+  } // end if ... else
 }
 
+// performs deletion of given element of the table in the database
 function performDeletion(el) {
   console.log(`id:`, $(el).closest(`tr`).data(`id`));
   $.ajax({
@@ -112,7 +119,7 @@ function performDeletion(el) {
     url: `/tasks/${$(el).closest(`tr`).data(`id`)}`,
   })
     .then(function (response) {
-      getTasks();
+      getTasks(); // refresh the screen
     })
     .catch(function (err) {
       console.log(`There was an error deleting the task on the server:`, err);
