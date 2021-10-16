@@ -8,7 +8,7 @@ router.get(`/`, (req, res) => {
   // TODO: temporary sendStatus
 
   // build SQL query - select everything!
-  let query = `SELECT * FROM "tasks"`;
+  let query = `SELECT * FROM "tasks" ORDER BY "id"`;
 
   pool
     .query(query)
