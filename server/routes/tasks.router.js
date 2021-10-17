@@ -74,18 +74,17 @@ router.delete(`/:id`, (req, res) => {
 // Updates tasks regarding complete / incomplete
 router.put(`/:id`, (req, res) => {
   let complete = req.body.complete;
-  let date = new Date(req.body.date);
   let id = req.params.id;
   console.log(`PUT /tasks id=`, id);
 
   let query = `
     UPDATE "tasks"
-    SET "complete" = $1, "time_completed" = $3
+    SET "complete" = $1, "time_completed" = CURRENT_TIMESTAMP
     WHERE ID = $2
   `;
 
   // parameterize user input
-  let values = [complete, id, date];
+  let values = [complete, id];
   pool
     .query(query, values)
     .then(() => {
