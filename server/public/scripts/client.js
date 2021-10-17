@@ -96,7 +96,8 @@ function render(tasks) {
   } // end for
 }
 
-function addTask() {
+function addTask(event) {
+  event.preventDefault();
   console.log(`in addTask`);
   $.ajax({
     method: `POST`,

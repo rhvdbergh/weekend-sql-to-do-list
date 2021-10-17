@@ -18,25 +18,27 @@
     </header>
     <main class="container" id="mainContainer">
       <div id="inputSection" class="sticky-top">
+        <form action="">
         <div class="row">
-          <div class="form-floating col-12 col-sm-9">
-            <input
-              id="taskInput"
-              type="text"
-              class="userInput form-control"
-              placeholder="Enter new task..."
-            />
-            <label for="taskInput">Enter new task...</label>
+            <div class="form-floating col-12 col-sm-9">
+              <input
+                id="taskInput"
+                type="text"
+                class="userInput form-control"
+                placeholder="Enter new task..."
+              />
+              <label for="taskInput">Enter new task...</label>
+            </div>
+            <div class="d-flex justify-content-center col-12 col-sm-3">
+              <button
+                class="btn btn-success flex-fill justify-self-center"
+                id="submitTaskBtn"
+              >
+                Add Task
+              </button>
+            </div>
           </div>
-          <div class="d-flex justify-content-center col-12 col-sm-3">
-            <button
-              class="btn btn-success flex-fill justify-self-center"
-              id="submitTaskBtn"
-            >
-              Add Task
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
       <div class="dropdown">
         <button
