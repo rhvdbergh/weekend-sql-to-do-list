@@ -3,6 +3,7 @@ const pg = require(`pg`);
 let client;
 
 if (process.env.DATABASE_URL) {
+  console.log(`in a deployed environment`);
   client = new pg.Client({
     connectionString: process.env.DATABASE_URL || '',
     ssl: {
