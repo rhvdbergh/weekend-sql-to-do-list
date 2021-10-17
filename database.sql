@@ -10,8 +10,8 @@ INSERT INTO "tasks"
 VALUES
 ('Bake some pizza', FALSE),
 ('Eat some pizza', FALSE),
-('Install Express', TRUE),
+('Install Express', FALSE),
 ('Create file structure', FALSE),
 ('Execute INSERT INTO statement', FALSE),
-('Create a table', TRUE),
+('Create a table', FALSE),
 ('Insert a really, really long message to see what it will look like on different screen sizes', FALSE);

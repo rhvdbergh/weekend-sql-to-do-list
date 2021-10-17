@@ -1,11 +1,13 @@
 console.log(`in js`);
 
+let orderBy;
+
 // DOM is loaded, start jQuery
 $(onReady);
 
 function onReady() {
   console.log(`in jq`);
-  getTasks();
+  getTasks(orderBy);
   // set up event listeners
   attachEventListeners();
 }
@@ -14,13 +16,37 @@ function attachEventListeners() {
   $(`#submitTaskBtn`).on(`click`, addTask);
   $(`#tasksDisplayTableBody`).on(`click`, `.deleteBtn`, deleteTask);
   $(`#tasksDisplayTableBody`).on(`click`, `.completeBtn`, completeTask);
+  $(`.sortBtn`).on(`click`, sort);
+}
+
+function sort() {
+  console.log(`in sort`);
+  let id = $(this).attr(`id`); // this id refers to the id of the btn
+  switch (id) {
+    case `sortAtoZ`:
+      orderBy = `az`;
+      break;
+    case `sortZtoA`:
+      orderBy = `za`;
+      break;
+    case `dateAscending`:
+      orderBy = `dateAsc`;
+      break;
+    case `dateDescending`:
+      orderBy = `dateDesc`;
+      break;
+    default:
+      orderBy = `id`; // this id is the id in the db table
+      break;
+  }
+  getTasks();
 }
 
 // retrieve all tasks (and render() )
 function getTasks() {
   $.ajax({
     method: `GET`,
-    url: `/tasks`,
+    url: `/tasks?sort=${orderBy}`, // orderBy is a global variable
   })
     .then(function (response) {
       render(response);
@@ -90,13 +116,36 @@ function addTask() {
 
 function deleteTask() {
   console.log(`in deleteTask`);
-  console.log(`id:`, $(this).closest(`tr`).data(`id`));
+  // open up modal to confirm
+  let self = $(this);
+  if (self.closest(`tr`).hasClass(`taskComplete`)) {
+    // this task is completed, delete without confirmation
+    performDeletion(self);
+  } else {
+    // the task is not yet complete, ask the user to confirm
+    swal({
+      title: `Are you sure?`,
+      text: `This will permanently delete this task!`,
+      icon: `warning`,
+      buttons: true,
+      dangerMode: true,
+    }).then(function (userConfirmedDeletion) {
+      if (userConfirmedDeletion) {
+        performDeletion(self);
+      } // end if userConfirmedDeletion
+    }); // end then for swal
+  } // end if ... else
+}
+
+// performs deletion of given element of the table in the database
+function performDeletion(el) {
+  console.log(`id:`, $(el).closest(`tr`).data(`id`));
   $.ajax({
     method: `DELETE`,
-    url: `/tasks/${$(this).closest(`tr`).data(`id`)}`,
+    url: `/tasks/${$(el).closest(`tr`).data(`id`)}`,
   })
     .then(function (response) {
-      getTasks();
+      getTasks(orderBy); // refresh the screen
     })
     .catch(function (err) {
       console.log(`There was an error deleting the task on the server:`, err);

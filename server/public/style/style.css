@@ -1,10 +1,6 @@
 tr {
-  border: 2px solid black;
+  border: 2px solid #818479;
 }
-
-/* button {
-  margin: 5px 5px;
-} */
 
 header {
   margin: 30px;
@@ -20,12 +16,12 @@ header {
 }
 
 .taskComplete {
-  background-color: grey;
+  background-color: #818479;
   color: lightgray;
 }
 
 .taskIncomplete {
-  background-color: khaki;
+  background-color: #b5cbb7;
 }
 
 .line-through {
@@ -37,7 +33,10 @@ header {
   font-size: x-small;
 }
 
-#deleteBtn {
+#sortBtn {
+  margin-top: 15px;
+  background-color: #d2e4c4;
+  color: black;
 }
 
 #inputSection {
