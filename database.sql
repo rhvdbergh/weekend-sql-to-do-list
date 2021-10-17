@@ -2,7 +2,7 @@ CREATE TABLE "tasks" (
  "id" SERIAL PRIMARY KEY,
  "task" VARCHAR(250) NOT NULL,
  "complete" BOOLEAN DEFAULT FALSE,
- "time_completed" DATE
+ "time_completed" TIMESTAMP DEFAULT NULL -- using timestamp for precision
 );
 
 INSERT INTO "tasks" 
