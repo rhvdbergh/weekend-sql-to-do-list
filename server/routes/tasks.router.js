@@ -1,6 +1,6 @@
 const { Router } = require(`express`);
 const router = new Router();
-const pool = require(`../modules/pool.js`);
+const client = require(`../modules/pool.js`);
 
 // retrieves all the tasks in the db
 router.get(`/`, (req, res) => {
@@ -13,7 +13,7 @@ router.get(`/`, (req, res) => {
   // build SQL query - select everything!
   let query = `SELECT * FROM "tasks" ORDER BY ${orderBy}`;
 
-  pool
+  client
     .query(query)
     .then((response) => {
       res.send(response.rows);
@@ -38,7 +38,7 @@ router.post(`/`, (req, res) => {
   // parameterize the values
   let values = [req.body.task];
 
-  pool
+  client
     .query(query, values)
     .then((response) => {
       console.log(`updated db`);
@@ -60,7 +60,7 @@ router.delete(`/:id`, (req, res) => {
 
   //parameterize the values
   let values = [req.params.id];
-  pool
+  client
     .query(query, values)
     .then(() => {
       res.sendStatus(200); // send the OK
@@ -85,7 +85,8 @@ router.put(`/:id`, (req, res) => {
 
   // parameterize user input
   let values = [complete, id];
-  pool
+
+  client
     .query(query, values)
     .then(() => {
       res.sendStatus(204); // send no content (=success)
